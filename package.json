@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PauLOk777/nodejs-course.git"
+  },
+  "author": "PauLOk777",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PauLOk777/nodejs-course/issues"
+  },
+  "homepage": "https://github.com/PauLOk777/nodejs-course#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
