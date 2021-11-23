@@ -1,10 +1,13 @@
 {
   "name": "nodejs-course",
   "version": "1.0.0",
-  "description": "",
+  "description": "Course of NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "homework1-task1": "nodemon src/homework1/task1.js",
+    "homework1-task2": "nodemon src/homework1/task2.js",
+    "babel:homework1-task1": "npx babel-node ./src/homework1/task1.js",
+    "babel:homework1-task2": "npx babel-node ./src/homework1/task2.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,13 @@
   },
   "homepage": "https://github.com/PauLOk777/nodejs-course#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "line-by-line": "^0.1.6"
+  },
+  "type": "module"
 }
