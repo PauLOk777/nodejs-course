@@ -1,3 +1,4 @@
+import logger from '../loggers/winstonLogger.js';
 import userService from '../services/userService.js';
 
 const userHandlers = {
@@ -20,22 +21,24 @@ const userHandlers = {
     },
 
     modifyUser: (req, res) => {
+        const id = req.params.id;
+        const user = req.body;
         try {
-            const id = req.params.id;
-            const user = req.body;
             const modifiedUser = userService.modifyUser(id, user);
             res.json(modifiedUser);
         } catch (err) {
+            logger.error(`Method: modifyUser, params: id - ${id}, user - ${JSON.stringify(user)}, error: ${err.stack || err}`);
             res.status(404).end();
         }
     },
 
     safeDeleteUser: (req, res) => {
+        const id = req.params.id;
         try {
-            const id = req.params.id;
             const deletedUser = userService.safeDeleteUser(id);
             res.json(deletedUser);
         } catch (err) {
+            logger.error(`Method: safeDeleteUser, params: id - ${id}, error: ${err.stack || err}`);
             res.status(404).end();
         }
     }
