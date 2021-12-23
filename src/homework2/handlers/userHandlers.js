@@ -1,5 +1,6 @@
 import logger from '../loggers/winstonLogger.js';
 import userService from '../services/userService.js';
+import StatusCodes from 'http-status-codes';
 
 const userHandlers = {
     getUserById: (req, res) => {
@@ -17,7 +18,7 @@ const userHandlers = {
     createUser: (req, res) => {
         const user = req.body;
         const newUser = userService.createUser(user);
-        res.status(201).json(newUser);
+        res.status(StatusCodes.CREATED).json(newUser);
     },
 
     modifyUser: (req, res) => {
@@ -28,7 +29,7 @@ const userHandlers = {
             res.json(modifiedUser);
         } catch (err) {
             logger.error(`Method: modifyUser, params: id - ${id}, user - ${JSON.stringify(user)}, error: ${err.stack || err}`);
-            res.status(404).end();
+            res.status(StatusCodes.NOT_FOUND).end();
         }
     },
 
@@ -39,7 +40,7 @@ const userHandlers = {
             res.json(deletedUser);
         } catch (err) {
             logger.error(`Method: safeDeleteUser, params: id - ${id}, error: ${err.stack || err}`);
-            res.status(404).end();
+            res.status(StatusCodes.NOT_FOUND).end();
         }
     }
 };
