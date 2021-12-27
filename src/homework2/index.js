@@ -1,10 +1,12 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import userRouter from './routers/userRouter.js';
 import logRequest from './middlewares/logRequest.js';
 import logError from './middlewares/logError.js';
 import processHandlers from './handlers/processHandlers.js';
 
 const app = express();
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 const USERS_ENDPOINT = '/users';
 
