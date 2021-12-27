@@ -1,4 +1,6 @@
+import logger from '../loggers/winstonLogger.js';
 import userService from '../services/userService.js';
+import StatusCodes from 'http-status-codes';
 
 const userHandlers = {
     getUserById: (req, res) => {
@@ -16,27 +18,29 @@ const userHandlers = {
     createUser: (req, res) => {
         const user = req.body;
         const newUser = userService.createUser(user);
-        res.status(201).json(newUser);
+        res.status(StatusCodes.CREATED).json(newUser);
     },
 
     modifyUser: (req, res) => {
+        const id = req.params.id;
+        const user = req.body;
         try {
-            const id = req.params.id;
-            const user = req.body;
             const modifiedUser = userService.modifyUser(id, user);
             res.json(modifiedUser);
         } catch (err) {
-            res.status(404).end();
+            logger.error(`Method: modifyUser, params: id - ${id}, user - ${JSON.stringify(user)}, error: ${err.stack || err}`);
+            res.status(StatusCodes.NOT_FOUND).end();
         }
     },
 
     safeDeleteUser: (req, res) => {
+        const id = req.params.id;
         try {
-            const id = req.params.id;
             const deletedUser = userService.safeDeleteUser(id);
             res.json(deletedUser);
         } catch (err) {
-            res.status(404).end();
+            logger.error(`Method: safeDeleteUser, params: id - ${id}, error: ${err.stack || err}`);
+            res.status(StatusCodes.NOT_FOUND).end();
         }
     }
 };
