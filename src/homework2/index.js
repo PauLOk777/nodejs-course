@@ -1,8 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routers/userRouter.js';
-import logRequest from './middlewares/logRequest.js';
-import logError from './middlewares/logError.js';
+import { logRequest, logError }  from './middlewares/index.js';
 import processHandlers from './handlers/processHandlers.js';
 
 const app = express();
